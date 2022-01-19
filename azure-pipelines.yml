@@ -13,7 +13,7 @@ variables:
   buildConfiguration: 'Release'
   dotNetFramework: 'net6.0'
   dotNetVersion: '6.0.x'
-  targetRuntime: 'linux-x64'
+  targetRuntime: 'win-x64'
 
 steps:
 - task: UseDotNet@2
@@ -23,7 +23,7 @@ steps:
     includePreviewVersions: true
 - script: dotnet build --configuration $(buildConfiguration)
 
-# Publish it as .NET 6 self-contained application for linux runtime
+# Publish it as .NET 6 self-contained application for windows runtime
 - task: DotNetCoreCLI@2
   inputs:
     command: publish

@@ -19,6 +19,7 @@ steps:
 - task: UseDotNet@2
   displayName: "Building APP"
   inputs:
+    version: $(dotNetVersion)
     includePreviewVersions: true
 - script: dotnet build --configuration $(buildConfiguration)
 

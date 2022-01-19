@@ -18,11 +18,17 @@ variables:
 steps:
 - script: dotnet build --configuration $(buildConfiguration) --framework $(dotNetFramework)
   displayName: 'dotnet build $(buildConfiguration)'
+- task: DotNetCoreCLI@2
+  inputs:
+    command: 'publish'
+    arguments: '--configuration $(BuildConfiguration) --framework $(dotNetFramework)'
+    publishWebProjects: true
+    zipAfterPublish: true
 - task: AzureWebApp@1
   inputs:
     azureSubscription: 'andreandrade_internal(1)(29eb732c-7f74-4314-82af-336bfd45139d)'
     appType: 'webApp'
     appName: 'WebAppInsightsAA'
-    package: '$(Build.ArtifactStagingDirectory)/**/*.zip'
+    package: '$(System.DefaultWorkingDirectory)/**/*.zip'
     deploymentMethod: 'auto'
 

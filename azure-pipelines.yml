@@ -39,7 +39,7 @@ steps:
 - task: AzureWebApp@1
   inputs:
     azureSubscription: 'andreandrade_internal(1)(29eb732c-7f74-4314-82af-336bfd45139d)'
-    appType: 'webAppLinux'
+    appType: 'webApp'
     appName: 'WebAppInsightsAA'
     package: '$(Build.ArtifactStagingDirectory)/**/*.zip'
     deploymentMethod: 'auto'

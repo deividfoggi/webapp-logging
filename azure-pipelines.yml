@@ -16,26 +16,8 @@ variables:
   targetRuntime: 'win-x64'
 
 steps:
-- task: UseDotNet@2
-  displayName: "Building APP"
-  inputs:
-    version: $(dotNetVersion)
-    includePreviewVersions: true
-- script: dotnet build --configuration $(buildConfiguration)
-
-# Publish it as .NET 6 self-contained application for windows runtime
-- task: DotNetCoreCLI@2
-  inputs:
-    command: publish
-    publishWebProjects: True
-    arguments: '--configuration $(BuildConfiguration) --framework $(dotNetFramework) --runtime $(targetRuntime) --self-contained --output $(Build.ArtifactStagingDirectory)'
-    zipAfterPublish: True
-
-# Package the file and uploads them as an artifact of the build
-- task: PublishPipelineArtifact@1
-  inputs:
-    targetPath: '$(Build.ArtifactStagingDirectory)' 
-    artifactName: 'WebAppInsights'
+- script: dotnet build --configuration $(buildConfiguration) --framework $(dotNetFramework)
+  displayName: 'dotnet build $(buildConfiguration)'
 - task: AzureWebApp@1
   inputs:
     azureSubscription: 'andreandrade_internal(1)(29eb732c-7f74-4314-82af-336bfd45139d)'

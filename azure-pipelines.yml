@@ -7,7 +7,7 @@ trigger:
 - master
 
 pool:
-  vmImage: windows-latest
+  vmImage: linux-latest
 
 variables:
   buildConfiguration: 'Release'
@@ -16,12 +16,16 @@ variables:
   targetRuntime: 'win-x64'
 
 steps:
-- script: dotnet build --configuration $(buildConfiguration) --framework $(dotNetFramework)
-  displayName: 'dotnet build $(buildConfiguration)'
+- task: UseDotNet@2
+  displayName: "Building APP"
+  inputs:
+    version: $(dotNetVersion)
+    includePreviewVersions: true
+- script: dotnet build --configuration $(buildConfiguration)
 - task: DotNetCoreCLI@2
   inputs:
     command: 'publish'
-    arguments: '--configuration $(BuildConfiguration) --framework $(dotNetFramework)'
+    arguments: '--configuration $(BuildConfiguration) --framework $(dotNetFramework) --runtime $(targetRuntime) --self-contained --output $(System.DefaultWorkingDirectory)'
     publishWebProjects: true
     zipAfterPublish: true
 - task: AzureWebApp@1

@@ -1,5 +1,0 @@
-{
-    "appService.preDeployTask": "publish-release",
-    "appService.deploySubpath": "bin\\Release\\net6.0\\publish",
-    "appService.defaultWebAppToDeploy": "/subscriptions/29eb732c-7f74-4314-82af-336bfd45139d/resourceGroups/app_svc_monitor/providers/Microsoft.Web/sites/WebAppInsightsAA"
-}

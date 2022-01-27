@@ -7,28 +7,28 @@
 #trigger:
 #- master
 
-variables:
-  dotNetFramework: 'net6.0'
-  app_service_name: 'WebAppInsightsAA'
+#variables:
+#  dotNetFramework: 'net6.0'
+#  app_service_name: 'WebAppInsightsAA'
 
-pool:
-  vmImage: windows-latest
+#pool:
+#  vmImage: windows-latest
 
-steps:
-- task: UseDotNet@2
-  displayName: 'dotnet build'
-  inputs:
-    version: 6.0.101
+#steps:
+#- task: UseDotNet@2
+#  displayName: 'dotnet build'
+#  inputs:
+#    version: 6.0.101
 
-- task: DotNetCoreCLI@2
-  displayName: 'dotnet publish'
-  inputs:
-    command: publish
-    arguments: '--framework $(dotNetFramework)'
+#- task: DotNetCoreCLI@2
+#  displayName: 'dotnet publish'
+#  inputs:
+#    command: publish
+#    arguments: '--framework $(dotNetFramework)'
 
-- task: AzureRmWebAppDeployment@4
-  displayName: 'Azure App Service Deploy: $(app_service_name)'
-  inputs:
-    azureSubscription: 'andreandrade_internal(29eb732c-7f74-4314-82af-336bfd45139d)'
-    WebAppName: '$(app_service_name)'
+#- task: AzureRmWebAppDeployment@4
+#  displayName: 'Azure App Service Deploy: $(app_service_name)'
+#  inputs:
+#    azureSubscription: 'andreandrade_internal(29eb732c-7f74-4314-82af-336bfd45139d)'
+#    WebAppName: '$(app_service_name)'
 

@@ -1,8 +1,4 @@
 - task: ManualIntervention@8
-  ${{ if eq(variables['Build.SourceBranchName'], 'master') }}:
-    enabled: true
-  ${{ if eq(variables['Build.SourceBranchName'], 'dev') }}:
-    enabled: false
   timeoutInMinutes: 20
   inputs:
     instructions: 'Approval Required'

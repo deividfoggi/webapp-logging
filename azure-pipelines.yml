@@ -66,7 +66,8 @@ stages:
       - job: deploy
         pool: Azure Pipelines
         steps:
-        - template: approval-task.yml
+        - ${{ if eq(variables['Build.SourceBranchName'], 'master') }}:
+          - template: approval-task.yml
         - task: UniversalPackages@0
           displayName: 'Universal download'
           inputs:

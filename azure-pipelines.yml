@@ -11,7 +11,6 @@ trigger:
   branches:
     include:
     - dev
-    exclude:
     - master
 
 
@@ -67,6 +66,7 @@ stages:
       - job: deploy
         pool: Azure Pipelines
         steps:
+        - template: approval-task.yml
         - task: UniversalPackages@0
           displayName: 'Universal download'
           inputs:

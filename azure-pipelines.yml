@@ -27,8 +27,6 @@ stages:
           displayName: 'Use .NET Core sdk 6.0.101'
           inputs:
             version: 6.0.101
-            installationPath: SDK
-            workingDirectory: '$(Agent.ToolsDirectory)/dotnet'
         - task: DotNetCoreCLI@2
           displayName: 'dotnet build'
           inputs:

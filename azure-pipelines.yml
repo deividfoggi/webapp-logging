@@ -7,28 +7,70 @@
 #trigger:
 #- master
 
-#variables:
-#  dotNetFramework: 'net6.0'
-#  app_service_name: 'WebAppInsightsAA'
+variables:
+    dotNetFramework: 'net6.0'
+    app_service_name: 'WebAppInsightsAA'
+    package_name: 'webappinsights-dev'
 
-#pool:
-#  vmImage: windows-latest
+pool:
+  name: 'Azure Pipelines'
+  vmImage: windows-latest
 
-#steps:
-#- task: UseDotNet@2
-#  displayName: 'dotnet build'
-#  inputs:
-#    version: 6.0.101
-
-#- task: DotNetCoreCLI@2
-#  displayName: 'dotnet publish'
-#  inputs:
-#    command: publish
-#    arguments: '--framework $(dotNetFramework)'
-
-#- task: AzureRmWebAppDeployment@4
-#  displayName: 'Azure App Service Deploy: $(app_service_name)'
-#  inputs:
-#    azureSubscription: 'andreandrade_internal(29eb732c-7f74-4314-82af-336bfd45139d)'
-#    WebAppName: '$(app_service_name)'
-
+stages:
+    - stage: 'CI'
+      displayName: 'CI'
+      jobs:
+      - job: build
+        pool: Azure Pipelines
+        steps:
+        - task: UseDotNet@2
+          displayName: 'Use .NET Core sdk 6.0.101'
+          inputs:
+            version: 6.0.101
+            installationPath: SDK
+            workingDirectory: '$(Agent.ToolsDirectory)/dotnet'
+        - task: DotNetCoreCLI@2
+          displayName: 'dotnet build'
+          inputs:
+            command: build
+            projects: '**/*.csproj'
+            arguments: '--framework $(dotNetFramework)'
+        - task: DotNetCoreCLI@2
+          displayName: 'dotnet publish'
+          inputs:
+            command: publish
+            arguments: '-c Release --no-restore'
+            zipAfterPublish: true
+            publishWebProjects: true
+        - task: UniversalPackages@0
+          displayName: 'Universal publish'
+          inputs:
+            command: publish
+            publishDirectory: '$(System.DefaultWorkingDirectory)'
+            vstsFeedPublish: 'e04a8b62-136c-499e-89ee-b1cb86e443fb/f242475f-7098-4d1c-a39e-4f1bae10870b'
+            vstsFeedPackagePublish: '$(package_name)'
+            verbosity: Debug
+            versionOption: patch
+            publishPackageMetadata: true
+    - stage: 'CD'
+      displayName: 'CD'
+      jobs:
+      - job: deploy
+        dependsOn: CI
+        condition: succeeded('CI')
+        pool: Azure Pipelines
+        steps:
+        - task: UniversalPackages@0
+          displayName: 'Universal download'
+          inputs:
+            vstsFeed: 'e04a8b62-136c-499e-89ee-b1cb86e443fb/f242475f-7098-4d1c-a39e-4f1bae10870b'
+            vstsFeedPackage: '$(package_name)'
+            vstsPackageVersion: '*'
+            verbosity: Debug
+        - task: AzureRmWebAppDeployment@4
+          displayName: 'Azure App Service Deploy: $(app_service_name)'
+          inputs:
+            azureSubscription: 'andreandrade_internal(29eb732c-7f74-4314-82af-336bfd45139d)'
+            appType: webApp
+            WebAppName: '$(app_service_name)'
+            packageForLinux: '$(System.DefaultWorkingDirectory)/**/*.zip'

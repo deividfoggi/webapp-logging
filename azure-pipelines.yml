@@ -66,7 +66,10 @@ stages:
       - job: deploy
         pool: Azure Pipelines
         steps:
-        - template: approval-task.yml
+        - task: ManualIntervention@8
+          inputs:
+            instructions: 'Approval required'
+            emailRecipients: 'andre.andrade@microsoft.com'
         - task: UniversalPackages@0
           displayName: 'Universal download'
           inputs:

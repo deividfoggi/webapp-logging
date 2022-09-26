@@ -1,5 +1,4 @@
 - task: ManualIntervention@8
-  timeoutInMinutes: 20
   inputs:
     instructions: 'Approval Required'
     emailRecipients: 'andre.andrade@microsoft.com'

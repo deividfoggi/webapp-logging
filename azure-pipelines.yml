@@ -52,12 +52,13 @@ stages:
             verbosity: Debug
             versionOption: patch
             publishPackageMetadata: true
+
     - stage: 'CD'
       displayName: 'CD'
+      dependsOn: CI
+      condition: succeeded('CI')
       jobs:
       - job: deploy
-        dependsOn: CI
-        condition: succeeded('CI')
         pool: Azure Pipelines
         steps:
         - task: UniversalPackages@0

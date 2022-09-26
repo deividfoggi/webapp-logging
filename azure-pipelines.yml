@@ -11,14 +11,17 @@ trigger:
   branches:
     include:
     - master
-    exclude:
     - dev
 
 
 variables:
     dotNetFramework: 'net6.0'
-    app_service_name: 'WebAppInsightsAA'
-    package_name: 'webappinsights'
+    ${{ if eq(variables['Build.SourceBranchName'], 'master') }}: 
+      app_service_name: 'WebAppInsightsAA'
+      package_name: 'webappinsights'
+    ${{ if eq(variables['Build.SourceBranchName'], 'dev') }}: 
+      app_service_name: 'webappinsightsaa31'
+      package_name: 'webappinsights-dev'
 
 pool:
   name: 'Azure Pipelines'

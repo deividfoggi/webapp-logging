@@ -7,6 +7,14 @@
 #trigger:
 #- master
 
+trigger:
+  branches:
+    include:
+    - dev
+    exclude:
+    - master
+
+
 variables:
     dotNetFramework: 'net6.0'
     app_service_name: 'WebAppInsightsAA'

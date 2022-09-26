@@ -1,2 +1,3 @@
 variables:
     dotNetFramework: 'net6.0'
+    package_name: 'webappinsights' 

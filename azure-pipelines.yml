@@ -11,6 +11,7 @@ trigger:
   branches:
     include:
     - dev
+    - master
 
 
 variables:

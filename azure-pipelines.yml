@@ -18,7 +18,7 @@ trigger:
 variables:
     dotNetFramework: 'net6.0'
     app_service_name: 'WebAppInsightsAA'
-    package_name: 'webappinsights-dev'
+    package_name: 'webappinsights'
 
 pool:
   name: 'Azure Pipelines'

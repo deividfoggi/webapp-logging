@@ -1,0 +1,4 @@
+variables:
+    ${{ if eq(variables['Build.SourceBranchName'], 'dev') }}:
+    app_service_name: 'webappinsightsaa31'
+    package_name: 'webappinsights-dev'

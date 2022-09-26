@@ -1,0 +1,2 @@
+variables:
+    dotNetFramework: 'net6.0'

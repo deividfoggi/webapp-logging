@@ -17,7 +17,7 @@ trigger:
 
 variables:
     dotNetFramework: 'net6.0'
-    app_service_name: 'WebAppInsightsAA'
+    app_service_name: 'webappinsightsaa31'
     package_name: 'webappinsights-dev'
 
 pool:

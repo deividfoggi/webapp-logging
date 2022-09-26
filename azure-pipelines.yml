@@ -16,10 +16,9 @@ trigger:
 
 
 variables:
-  ${{ if eq(variables['Build.SourceBranchName'], 'dev') }}: 
-  - template: vars-dev.yml
-  ${{ if eq(variables['Build.SourceBranchName'], 'prod') }}: 
-  - template: vars-prod.yml
+- template: default-vars.yml
+- template: vars-dev.yml
+- template: vars-prod.yml
 
 pool:
   name: 'Azure Pipelines'

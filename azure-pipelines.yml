@@ -10,9 +10,9 @@
 trigger:
   branches:
     include:
-    - dev
-    exclude:
     - master
+    exclude:
+    - dev
 
 
 variables:

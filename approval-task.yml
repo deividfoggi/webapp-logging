@@ -1,5 +1,0 @@
-- task: ManualIntervention@8
-  inputs:
-    instructions: 'Approval Required'
-    emailRecipients: 'andre.andrade@microsoft.com'
-    onTimeout: reject

@@ -11,7 +11,6 @@ trigger:
   branches:
     include:
     - dev
-    - master
 
 
 variables:
@@ -66,10 +65,6 @@ stages:
       - job: deploy
         pool: Azure Pipelines
         steps:
-        - task: ManualIntervention@8
-          inputs:
-            instructions: 'Approval required'
-            emailRecipients: 'andre.andrade@microsoft.com'
         - task: UniversalPackages@0
           displayName: 'Universal download'
           inputs:

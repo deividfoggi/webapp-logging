@@ -19,16 +19,14 @@ variables:
 - template: vars-dev.yml
 - template: vars-prod.yml
 
-pool:
-  name: 'Azure Pipelines'
-  vmImage: windows-latest
-
 stages:
     - stage: 'CI'
       displayName: 'CI'
       jobs:
       - job: build
-        pool: Azure Pipelines
+        pool:
+          name: $(pool_name)
+          vmImage: $(vmImage)
         steps:
         - task: UseDotNet@2
           displayName: 'Use .NET Core sdk 6.0.101'
@@ -64,7 +62,9 @@ stages:
       condition: succeeded('CI')
       jobs:
       - job: deploy
-        pool: Azure Pipelines
+        pool:
+          name: $(pool_name)
+          vmImage: $(vmImage)
         steps:
         - task: UniversalPackages@0
           displayName: 'Universal download'

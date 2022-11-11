@@ -1,13 +1,16 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <IsPackable>true</IsPackable>
+    <ApplicationInsightsResourceId>/subscriptions/66dbee39-6412-426f-b432-f8ddd74175a3/resourceGroups/AppServiceDemo/providers/microsoft.insights/components/ApplicationInsightsDemo</ApplicationInsightsResourceId>
+    <UserSecretsId>77bc563a-2205-433c-946f-9d0be22ace68</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.21.0" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
   </ItemGroup>
   <ItemGroup>

@@ -60,7 +60,7 @@ public class HomeController : Controller
 
         SqlConnectionStringBuilder builder = new SqlConnectionStringBuilder();
 
-        builder.DataSource = "testmonitorweapp.database.windows.net";
+        builder.DataSource = "webapp1insightsdemosqlsrv.database.windows.net";
         builder.UserID = "aadmin";
         builder.Password = "Welcome#123";
         builder.InitialCatalog = "testDB";

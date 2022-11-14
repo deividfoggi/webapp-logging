@@ -61,9 +61,9 @@ public class HomeController : Controller
         SqlConnectionStringBuilder builder = new SqlConnectionStringBuilder();
 
         builder.DataSource = "webapp1insightsdemosqlsrv.database.windows.net";
-        builder.UserID = "aadmin";
+        builder.UserID = "CloudSA22595cd7";
         builder.Password = "Welcome#123";
-        builder.InitialCatalog = "testDB";
+        builder.InitialCatalog = "webApp1-InsightsDemo-db";
 
         using (SqlConnection connection = new SqlConnection(builder.ConnectionString))
         {

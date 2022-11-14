@@ -116,7 +116,7 @@ public class HomeController : Controller
 
         var httpRequestMessage = new HttpRequestMessage(
             HttpMethod.Get,
-            "https://localhost:7004/api/SlowAPIGet")
+            "https://webapp1-insightsdemo.azurewebsites.net/api/SlowAPIGet")
         {
             Headers =
             {

@@ -1,0 +1,17 @@
+[
+  {
+    "id": "1",
+    "objectName": "Object 1",
+    "objectType": "Master"
+  },
+  {
+    "id": "2",
+    "objectName": "Object 2",
+    "objectType": "Child"
+  },
+  {
+    "id": "3",
+    "objectName": "Object 3",
+    "objectType": "Child"
+  }
+]

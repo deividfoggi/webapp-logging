@@ -26,12 +26,12 @@ public class SlowAPI : ControllerBase
 
         var httpRequestMessage = new HttpRequestMessage(
             HttpMethod.Get,
-            "https://api.github.com/repos/welasco/HubitatAlarm")
+            "https://api.github.com/repos/deividfoggi/webapp-logging/contents/objects.json")
         {
             Headers =
             {
                 { HeaderNames.Accept, "application/vnd.github.v3+json" },
-                { HeaderNames.UserAgent, "HttpRequestsSample" }
+                { HeaderNames.UserAgent, "request" }
             }
         };
 
